@@ -1,0 +1,16 @@
+{
+  "name": "atanas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "atanas_group_a.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "doc": "jsdoc atanas_group_a.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsdoc": "^4.0.2"
+  }
+}
