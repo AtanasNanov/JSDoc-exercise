@@ -7,7 +7,10 @@ Criteria
  */
 
 
-export const COLUMN_TYPE = { /* constant object that defines several column types  */
+/*** An object that defines the possible types for a table column.
+ * @enum {string}
+ */
+export const COLUMN_TYPE = { 
     TEXT: 'text',
     NUMBER: 'number',
     BOOLEAN: 'boolean',
@@ -20,13 +23,22 @@ export const COLUMN_TYPE = { /* constant object that defines several column type
     CURRENCY: 'currency'
 };
 
-
-export function cellTypeIsTextOrEnum(cell) { /* function that takes a cell element as an argument and returns a boolean indicating whether the cell's type is TEXT or ENUM */
+/**
+ * Checks if a given cell is of type 'text' or 'enum'.
+ * @param {HTMLElement} cell - The cell element to check.
+ * @returns {boolean} - `true` if the cell is of type 'text' or 'enum', `false` otherwise.
+ */
+export function cellTypeIsTextOrEnum(cell) { 
     const cellType = cell.getAttribute('cell-type');
     return cellType == COLUMN_TYPE.TEXT || cellType == COLUMN_TYPE.ENUM;
 }
 
-function getDefaultTypeWidth(type) { /* function that returns the default width for a column type and returns a number representing the default width for the column type*/
+/**
+ * Returns the default width (in pixels) for a given column type.
+ * @param {string} type - The column type.
+ * @returns {number} - The default width (in pixels) for the given column type.
+ */
+function getDefaultTypeWidth(type) { 
     switch (type) {
         case COLUMN_TYPE.TIME:
         case COLUMN_TYPE.TIMESPAN:
@@ -45,14 +57,26 @@ function getDefaultTypeWidth(type) { /* function that returns the default width 
     }
 }
 
-export function round(number, decimals) { /* function that rounds a number to the specified number of decimal points and returns the rounded number according to the decimal points specified */
+/**
+ * Rounds a number to a specified number of decimal places.
+ * @param {number} number - The number to round.
+ * @param {number} [decimals=2] - The number of decimal places to round to (default is 2).
+ * @returns {number} - The rounded number.
+ */
+export function round(number, decimals) { 
     if (!decimals)
         decimals = 2;
 
     return Number(Math.round(number + 'e' + decimals) + 'e-' + decimals);
 };
 
-export function inlineStyle(el) { /* function that generates inline CSS style for an element based on its width and type. generates inline CSS to the element specified (el)*/
+/**
+ * Applies inline styles to an element to control its width.
+ * @param {HTMLElement} el - The element to apply the styles to.
+ * @returns {Object} - An object that contains the inline styles that were applied.
+ */
+
+export function inlineStyle(el) { 
     if (!this.width || this.width === 'auto')
         this.width = getDefaultTypeWidth(this.type);
 
@@ -76,8 +100,14 @@ export function inlineStyle(el) { /* function that generates inline CSS style fo
     return style;
 }
 
-
-export function distinct(array, selector) { /* function that removes duplicate values from an array and creates another array containing only the unique values from it */
+/**
+ * Removes duplicate values from an array.
+ * @param {Array} array - The array to remove duplicates from.
+ * @param {Function} [selector] - An optional function to select the value to use as the key for identifying duplicates.
+ * @returns {Array} - An array that contains only the unique values from the input array.
+ * @throws {Error} - Throws an error if the selector function throws an error.
+ */
+export function distinct(array, selector) { 
     var map = new Map(),
         result = [];
 
